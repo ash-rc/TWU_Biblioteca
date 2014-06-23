@@ -13,12 +13,11 @@ public class ReturnBookCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         try {
             library.returnBook();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
     }
 }

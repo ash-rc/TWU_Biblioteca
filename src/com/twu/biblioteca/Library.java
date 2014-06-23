@@ -6,16 +6,16 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Library {
-    Map<String, Book> bookList;
-    Map<String, Movie> movieList;
+    private Map<String, Book> bookList;
+    private Map<String, Movie> movieList;
 
     private PrintStream printStream;
     private BufferedReader reader;
 
-    public Library(PrintStream printStream, BufferedReader reader, Map<String, Book> bookList) {
+    public Library(PrintStream printStream, BufferedReader reader, Map<String, Book> bookList, Map<String, Movie> movieList) {
         this.bookList = bookList;
+        this.movieList = movieList;
         this.printStream = printStream;
         this.reader = reader;
     }
@@ -83,5 +83,9 @@ public class Library {
             return bookList.get(bookString);
         else
             return null;
+    }
+
+    public void displayBooks() {
+        display();
     }
 }

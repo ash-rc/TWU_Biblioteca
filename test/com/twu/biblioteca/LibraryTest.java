@@ -16,12 +16,13 @@ import static org.mockito.Mockito.*;
 /**
  * Created by derekgilwa on 6/20/14.
  */
-public class TestLibrary {
+public class LibraryTest {
 
 
     private PrintStream printStream;
     private BufferedReader reader;
     Map<String,Book> bookList;
+    Map<String,Movie> movieList;
     private Library library;
 
 
@@ -30,7 +31,8 @@ public class TestLibrary {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
         bookList = new HashMap<String,Book>();
-        library = new Library(printStream, reader, bookList);
+        movieList = new HashMap<String,Movie>();
+        library = new Library(printStream, reader, bookList, movieList);
     }
 
     @Test
@@ -124,6 +126,19 @@ public class TestLibrary {
 
         library.returnBook();
         verify(printStream).println("That is not a valid book to return.");
+    }
+
+    @Test
+    public void shouldDisplayListOfBooks() {
+        Book book = new Book("Harry Potter", 1995, false, "J.K. Rowling");
+        bookList.put("Harry Potter", book);
+        int longestBook = "Harry Potter".length() + 4;
+        int longestAuthor = "J.K. Rowling".length() + 4;
+
+        library.display();
+
+        String format = "%-" + longestBook + "s" + "%-" + longestAuthor + "s" + "%s\n";
+        verify(printStream).printf(format, "Harry Potter", "J.K. Rowling", 1995);
     }
 
 

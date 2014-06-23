@@ -30,14 +30,11 @@ public class CommandMenu {
         return reader.readLine();
     }
 
-    public boolean executeCommand(String command) {
-
-
+    public void executeCommand(String command) {
         if(commands.containsKey(command)){
-            return commands.get(command).execute();
+            commands.get(command).execute();
         } else {
             printStream.println("Select a valid option");
-            return false;
         }
 
     }

@@ -13,12 +13,11 @@ public class CheckoutBookCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         try {
             library.checkOutBook();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
     }
 }

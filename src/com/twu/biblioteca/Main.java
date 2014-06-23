@@ -13,15 +13,18 @@ public class Main {
         Map<String,Book> bookList = new HashMap<String,Book>();
         bookList.put("Harry Potter", new Book("Harry Potter", 1995, false, "JK Rowling"));
         bookList.put("The Shining", new Book("The Shining", 1970, false, "Stephen King"));
+        Map<String,Movie> movieList = new HashMap<String,Movie>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Library library = new Library(System.out, reader, bookList);
+        Library library = new Library(System.out, reader, bookList, movieList);
 
         HashMap<String,Command> commands = new HashMap<String, Command>();
         Command listBooksCommand = new ListBooksCommand(library);
         commands.put("list", listBooksCommand);
-        commands.put("quit", new QuitCommand(System.out));
         commands.put("checkout", new CheckoutBookCommand(library));
         commands.put("return", new ReturnBookCommand(library));
+
+        Command quitCommand = new QuitCommand(System.out);
+        commands.put("quit", quitCommand);
 
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
                 commands);

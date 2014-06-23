@@ -14,8 +14,7 @@ public class QuitCommand implements Command {
     }
 
     @Override
-    public boolean execute() {
+    public void execute() {
         out.println("Quitting Bibliotecha");
-        return true;
     }
 }

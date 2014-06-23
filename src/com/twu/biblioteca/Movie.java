@@ -18,5 +18,16 @@ public class Movie extends LibraryItem {
     public String getDirector() {
         return director;
     }
+
+    @Override
+    public int getCreatorLength() {
+        return director.length();
+    }
+
+    @Override
+    public String getFormattedListItem(int maxTitleLength, int maxCreatorLength) {
+        String format = "%-" + maxTitleLength + "s" + "%-" + maxCreatorLength + "s" + "%s\t%s";
+        return String.format(format, title, director, year, rating);
+    }
 }
 

@@ -9,8 +9,6 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
 
 /**
@@ -41,10 +39,10 @@ public class LibraryTest {
         bookList.put("", book);
 
         when(reader.readLine()).thenReturn("");
-        library.checkOutBook();
+        library.checkOutItem(bookList);
 
         verify(book).checkOut();
-        verify(printStream).println("Thank you! Enjoy the book");
+        verify(printStream).println("Thank you! Enjoy the item");
     }
 
     @Test
@@ -54,10 +52,10 @@ public class LibraryTest {
 
         when(reader.readLine()).thenReturn("");
         when(book.isCheckedOut()).thenReturn(true);
-        library.returnBook();
+        library.returnItem(bookList);
 
         verify(book).returnItem();
-        verify(printStream).println("Thank you for returning the book");
+        verify(printStream).println("Thank you for returning the item");
     }
 
     @Test
@@ -67,7 +65,7 @@ public class LibraryTest {
         int longestBook = "Harry Potter".length() + 4;
         int longestAuthor = "J.K. Rowling".length() + 4;
 
-        library.display();
+        library.display(bookList);
 
         String format = "%-" + longestBook + "s" + "%-" + longestAuthor + "s" + "%s\n";
         verify(printStream, never()).printf(format, "Harry Potter", "J.K. Rowling", 1995);
@@ -76,8 +74,8 @@ public class LibraryTest {
     @Test
     public void shouldDisplayErrorForBooksNotInTheLibrary() throws IOException {
         when(reader.readLine()).thenReturn("");
-        library.checkOutBook();
-        verify(printStream).println("That book is not available.");
+        library.checkOutItem(bookList);
+        verify(printStream).println("That item is not available.");
     }
 
     @Test
@@ -86,9 +84,9 @@ public class LibraryTest {
         bookList.put("Harry Potter", book);
         when(reader.readLine()).thenReturn("Harry Potter");
 
-        library.checkOutBook();
+        library.checkOutItem(bookList);
 
-        verify(printStream).println("That book is not available.");
+        verify(printStream).println("That item is not available.");
     }
 
     @Test
@@ -97,8 +95,8 @@ public class LibraryTest {
         bookList.put("Harry Potter", book);
         when(reader.readLine()).thenReturn("Harry Potter");
 
-        library.checkOutBook();
-        verify(printStream).println("Thank you! Enjoy the book");
+        library.checkOutItem(bookList);
+        verify(printStream).println("Thank you! Enjoy the item");
     }
 
     @Test
@@ -107,15 +105,15 @@ public class LibraryTest {
         bookList.put("Harry Potter", book);
         when(reader.readLine()).thenReturn("Harry Potter");
 
-        library.returnBook();
-        verify(printStream).println("Thank you for returning the book");
+        library.returnItem(bookList);
+        verify(printStream).println("Thank you for returning the item");
     }
 
     @Test
      public void shouldDisplayErrorWhenReturningBooksNotInTheLibrarySystem() throws IOException {
         when(reader.readLine()).thenReturn("");
         library.returnBook();
-        verify(printStream).println("That is not a valid book to return.");
+        verify(printStream).println("That is not a valid item to return.");
     }
 
     @Test
@@ -125,7 +123,7 @@ public class LibraryTest {
         when(reader.readLine()).thenReturn("Harry Potter");
 
         library.returnBook();
-        verify(printStream).println("That is not a valid book to return.");
+        verify(printStream).println("That is not a valid item to return.");
     }
 
     @Test
@@ -135,10 +133,11 @@ public class LibraryTest {
         int longestBook = "Harry Potter".length() + 4;
         int longestAuthor = "J.K. Rowling".length() + 4;
 
-        library.display();
+        library.displayBooks();
 
-        String format = "%-" + longestBook + "s" + "%-" + longestAuthor + "s" + "%s\n";
-        verify(printStream).printf(format, "Harry Potter", "J.K. Rowling", 1995);
+        String format = "%-" + longestBook + "s" + "%-" + longestAuthor + "s" + "%s";
+        String output = String.format(format, "Harry Potter", "J.K. Rowling", 1995);
+        verify(printStream).println(output);
     }
 
 

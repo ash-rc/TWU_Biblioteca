@@ -10,26 +10,39 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Map<String,Book> bookList = new HashMap<String,Book>();
+        Map<String, Book> bookList = new HashMap<String,Book>();
         bookList.put("Harry Potter", new Book("Harry Potter", 1995, false, "JK Rowling"));
         bookList.put("The Shining", new Book("The Shining", 1970, false, "Stephen King"));
+
         Map<String,Movie> movieList = new HashMap<String,Movie>();
+        movieList.put("Titanic", new Movie("Titanic", 1998, false, "James Cameron", 7));
+        movieList.put("Harry Potter", new Movie("Harry Potter", 1998, false, "Christopher Columbus", 8));
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         Library library = new Library(System.out, reader, bookList, movieList);
 
-        HashMap<String,Command> commands = new HashMap<String, Command>();
-        Command listBooksCommand = new ListBooksCommand(library);
-        commands.put("list", listBooksCommand);
-        commands.put("checkout", new CheckoutBookCommand(library));
-        commands.put("return", new ReturnBookCommand(library));
+        Map<String, User> users = new HashMap<String, User>();
+        users.put("123-4567", new User("123-4567", "password"));
+        users.put("012-3456", new User("012-3456", "mybirthday"));
 
-        Command quitCommand = new QuitCommand(System.out);
-        commands.put("quit", quitCommand);
+        Authenticator auth = new Authenticator(System.out, reader, users);
+
+        HashMap<String,Command> commands = new HashMap<String, Command>();
+        commands.put("list books", new ListBooksCommand(library));
+        commands.put("checkout book", new CheckoutBookCommand(library));
+        commands.put("return book", new ReturnBookCommand(library));
+
+        commands.put("list movies", new ListMoviesCommand(library));
+        commands.put("checkout movie", new CheckoutMovieCommand(library));
+        commands.put("return movie", new ReturnMovieCommand(library));
+
+        commands.put("quit", new QuitCommand(System.out));
 
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
                 commands);
 
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu);
+        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, auth, reader, System.out);
         bibliotechaApp.start();
 
   }

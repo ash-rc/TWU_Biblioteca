@@ -68,20 +68,4 @@ public class CommandMenuTest {
         verify(printStream).println("Select a valid option");
     }
 
-    @Test
-    public void shouldCheckoutBookCommandAlterBookList() throws IOException {
-        Library library = mock(Library.class);
-        Command checkoutBookCommand = new CheckoutBookCommand(library);
-        checkoutBookCommand.execute();
-        verify(library).checkOutBook();
-    }
-
-    @Test
-    public void shouldReturnBookCommandAlterBookList() throws IOException {
-        Library library = mock(Library.class);
-        Command returnBookCommand = new ReturnBookCommand(library);
-        returnBookCommand.execute();
-        verify(library).returnBook();
-    }
-    
 }

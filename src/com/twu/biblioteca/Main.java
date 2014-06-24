@@ -26,7 +26,8 @@ public class Main {
         users.put("123-4567", new User("123-4567", "password"));
         users.put("012-3456", new User("012-3456", "mybirthday"));
 
-        Authenticator auth = new Authenticator(System.out, reader, users);
+        Authenticator auth = new Authenticator(users);
+        Session session = new Session(System.out, reader, auth);
 
         HashMap<String,Command> commands = new HashMap<String, Command>();
         commands.put("list books", new ListBooksCommand(library));
@@ -42,7 +43,7 @@ public class Main {
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
                 commands);
 
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, auth, reader, System.out);
+        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, System.out, session);
         bibliotechaApp.start();
 
   }

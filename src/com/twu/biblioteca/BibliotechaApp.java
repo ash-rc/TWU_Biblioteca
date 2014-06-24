@@ -11,37 +11,20 @@ public class BibliotechaApp {
 
     private CommandMenu commandMenu;
     private PrintStream out;
-    private BufferedReader reader;
-    private Authenticator auth;
+    private Session session;
 
-    public BibliotechaApp(CommandMenu commandMenu, Authenticator auth, BufferedReader reader, PrintStream out) {
+    public BibliotechaApp(CommandMenu commandMenu, PrintStream out, Session session) {
         this.commandMenu = commandMenu;
-        this.auth = auth;
         this.out = out;
-        this.reader = reader;
+        this.session = session;
     }
 
     public void start() throws IOException {
         out.println("Welcome to the library!");
 
-        boolean accountNumIsValid = false;
-        String accountNum = "";
-        while (!accountNumIsValid) {
-            out.println("Enter your library account number:");
-            accountNum = reader.readLine();
-            accountNumIsValid = auth.accountNumIsValid(accountNum);
-
-            if (!accountNumIsValid) out.println("Invalid account number.");
-        }
-
         boolean validLogin = false;
-        String password = "";
-        while (!validLogin) {
-            out.println("Enter your password:");
-            password = reader.readLine();
-            validLogin = auth.loginIsValid(accountNum, password);
-
-            if(!validLogin) out.println("Login failed.");
+        while(!validLogin) {
+            validLogin = session.login();
         }
 
         commandMenu.listOptions();

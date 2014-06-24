@@ -14,7 +14,7 @@ public class Authenticator {
         return users.containsKey(accountNum);
     }
 
-    public boolean loginIsValid(String accountNum, String password) {
+    public boolean passwordIsValid(String accountNum, String password) {
         return users.get(accountNum).passwordDoesMatch(password);
     }
 }

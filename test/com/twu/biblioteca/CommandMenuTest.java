@@ -34,12 +34,6 @@ public class CommandMenuTest {
     }
 
     @Test
-    public void shouldDisplayWelcomeMessage() {
-        commandMenu.displayWelcome();
-        verify(printStream).println("Welcome to the library!");
-    }
-
-    @Test
     public void shouldListAllMenuOptions() {
         Command command = mock(Command.class);
         commands.put("list", command);

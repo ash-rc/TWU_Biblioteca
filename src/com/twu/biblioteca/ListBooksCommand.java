@@ -14,4 +14,9 @@ public class ListBooksCommand implements Command {
     public void execute() {
         library.displayBooks();
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
 }

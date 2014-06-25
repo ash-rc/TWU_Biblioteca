@@ -23,8 +23,8 @@ public class Main {
         Library library = new Library(System.out, reader, bookList, movieList);
 
         Map<String, User> users = new HashMap<String, User>();
-        users.put("123-4567", new User("123-4567", "password"));
-        users.put("012-3456", new User("012-3456", "mybirthday"));
+        users.put("123-4567", new User("password"));
+        users.put("012-3456", new User("mybirthday"));
 
         Authenticator auth = new Authenticator(users);
         Session session = new Session(System.out, reader, auth);
@@ -39,6 +39,7 @@ public class Main {
         commands.put("return movie", new ReturnMovieCommand(library));
 
         commands.put("quit", new QuitCommand(System.out));
+        commands.put("login", new LoginCommand(session));
 
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
                 commands);

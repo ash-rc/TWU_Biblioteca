@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import java.io.IOException;
 
-/**
- * Created by melissamarshall on 6/23/14.
- */
 public class ReturnMovieCommand implements Command {
     private Library library;
 
@@ -19,5 +16,10 @@ public class ReturnMovieCommand implements Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean isPrivate() {
+        return true;
     }
 }

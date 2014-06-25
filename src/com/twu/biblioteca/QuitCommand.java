@@ -17,4 +17,9 @@ public class QuitCommand implements Command {
     public void execute() {
         out.println("Quitting Bibliotecha");
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
 }

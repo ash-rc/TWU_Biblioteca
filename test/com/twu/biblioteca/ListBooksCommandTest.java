@@ -35,7 +35,7 @@ public class ListBooksCommandTest {
         when(reader.readLine()).thenReturn("list");
 
         String userCommand = commandMenu.promptUser();
-        commandMenu.executeCommand(userCommand);
+        commandMenu.executeCommand(userCommand, true);
 
         verify(library).displayBooks();
     }

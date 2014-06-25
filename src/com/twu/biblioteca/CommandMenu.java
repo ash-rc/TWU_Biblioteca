@@ -19,10 +19,14 @@ public class CommandMenu {
         this.commands = commands;
     }
 
+    public void listOptions(boolean sessionHasLoggedInUser) {
+        for (String commandName : commands.keySet()) {
+            if (!commandIsAccessible(commandName, sessionHasLoggedInUser))
+                continue;
+            else if (sessionHasLoggedInUser && commands.get(commandName) instanceof LoginCommand)
+                continue;
 
-    public void listOptions() {
-        for (String command : commands.keySet()) {
-            printStream.println(command);
+            printStream.println(commandName);
         }
     }
 
@@ -30,12 +34,17 @@ public class CommandMenu {
         return reader.readLine();
     }
 
-    public void executeCommand(String command) {
-        if(commands.containsKey(command)){
-            commands.get(command).execute();
+    public void executeCommand(String commandName, boolean sessionHasLoggedInUser) {
+        if(commands.containsKey(commandName) && commandIsAccessible(commandName, sessionHasLoggedInUser)){
+            commands.get(commandName).execute();
         } else {
             printStream.println("Select a valid option");
+            return;
         }
+    }
 
+    private boolean commandIsAccessible(String commandName, boolean sessionHasLoggedInUser) {
+        if (!sessionHasLoggedInUser && commands.get(commandName).isPrivate()) return false;
+        return true;
     }
 }

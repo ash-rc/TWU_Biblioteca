@@ -14,4 +14,9 @@ public class ListMoviesCommand implements Command {
     public void execute() {
         library.displayMovies();
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
 }

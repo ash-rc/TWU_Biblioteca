@@ -2,20 +2,17 @@ package com.twu.biblioteca;
 
 import java.io.IOException;
 
-/**
- * Created by derekgilwa on 6/20/14.
- */
-public class ReturnBookCommand implements Command {
-    private Library library;
+public class LoginCommand implements Command {
+    private Session session;
 
-    public ReturnBookCommand(Library library) {
-        this.library = library;
+    public LoginCommand(Session session) {
+        this.session = session;
     }
 
     @Override
     public void execute() {
         try {
-            library.returnBook();
+            session.login();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -23,6 +20,6 @@ public class ReturnBookCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return true;
+        return false;
     }
 }

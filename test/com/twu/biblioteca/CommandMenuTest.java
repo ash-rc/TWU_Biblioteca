@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -35,10 +34,13 @@ public class CommandMenuTest {
 
     @Test
     public void shouldListAllMenuOptions() {
+        Session session = mock(Session.class);
+        when(session.hasLoggedInUser()).thenReturn(true);
+
         Command command = mock(Command.class);
         commands.put("list", command);
 
-        commandMenu.listOptions();
+        commandMenu.listOptions(session.hasLoggedInUser());
         verify(printStream).println("list");
     }
 
@@ -49,7 +51,7 @@ public class CommandMenuTest {
         when(reader.readLine()).thenReturn("test");
 
         String userCommand = commandMenu.promptUser();
-        commandMenu.executeCommand(userCommand);
+        commandMenu.executeCommand(userCommand, true);
         verify(command).execute();
     }
 
@@ -58,7 +60,7 @@ public class CommandMenuTest {
         when(reader.readLine()).thenReturn("Invalid option");
 
         String userCommand = commandMenu.promptUser();
-        commandMenu.executeCommand(userCommand);
+        commandMenu.executeCommand(userCommand, true);
         verify(printStream).println("Select a valid option");
     }
 

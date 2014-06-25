@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -22,17 +21,12 @@ public class BibliotechaApp {
     public void start() throws IOException {
         out.println("Welcome to the library!");
 
-        boolean validLogin = false;
-        while(!validLogin) {
-            validLogin = session.login();
-        }
-
-        commandMenu.listOptions();
+        commandMenu.listOptions(session.hasLoggedInUser());
 
         String userCommand = "";
         while (!userCommand.equals("quit")) {
             userCommand = commandMenu.promptUser();
-            commandMenu.executeCommand(userCommand);
+            commandMenu.executeCommand(userCommand, session.hasLoggedInUser());
         }
     }
 

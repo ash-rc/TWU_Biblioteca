@@ -21,4 +21,9 @@ public class CheckoutMovieCommand implements Command {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean isPrivate() {
+        return true;
+    }
 }

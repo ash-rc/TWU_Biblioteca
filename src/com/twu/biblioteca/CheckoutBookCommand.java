@@ -20,4 +20,9 @@ public class CheckoutBookCommand implements Command {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean isPrivate() {
+        return true;
+    }
 }

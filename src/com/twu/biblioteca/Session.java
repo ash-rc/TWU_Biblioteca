@@ -9,11 +9,13 @@ public class Session {
     private PrintStream out;
     private BufferedReader reader;
     private Authenticator authenticator;
+    private User user;
 
     public Session(PrintStream out, BufferedReader reader, Authenticator authenticator) {
         this.out = out;
         this.reader = reader;
         this.authenticator = authenticator;
+        this.user = null;
     }
 
     public boolean login() throws IOException {
@@ -32,6 +34,11 @@ public class Session {
             return false;
         }
 
+        user = authenticator.getUser(accountNum);
         return true;
+    }
+
+    public boolean hasLoggedInUser() {
+        return user != null;
     }
 }

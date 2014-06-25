@@ -17,4 +17,8 @@ public class Authenticator {
     public boolean passwordIsValid(String accountNum, String password) {
         return users.get(accountNum).passwordDoesMatch(password);
     }
+
+    public User getUser(String accountNum) {
+        return users.get(accountNum);
+    }
 }

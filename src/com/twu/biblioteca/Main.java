@@ -23,8 +23,8 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         Map<String, User> users = new HashMap<String, User>();
-        users.put("123-4567", new User("password"));
-        users.put("012-3456", new User("mybirthday"));
+        users.put("123-4567", new User("Ashley", "ashley.r.campo@gmail.com", "555-404-9999", "password"));
+        users.put("012-3456", new User("Melissa", "mmelissahh@gmail.com", "123-456-7890", "mybirthday"));
 
         Authenticator auth = new Authenticator(users);
         Session session = new Session(System.out, reader, auth);
@@ -39,6 +39,7 @@ public class Main {
         commands.put("checkout movie", new CheckoutMovieCommand(library));
         commands.put("return movie", new ReturnMovieCommand(library));
 
+        commands.put("list user details", new ListUserDetailsCommand(session));
         commands.put("quit", new QuitCommand(System.out));
         commands.put("login", new LoginCommand(session));
 

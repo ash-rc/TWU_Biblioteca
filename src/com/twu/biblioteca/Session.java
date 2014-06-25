@@ -43,7 +43,7 @@ public class Session {
         return user != null;
     }
 
-    public User getUser() {
-        return user;
+    public void printUserDetails() {
+        out.println(user.getDetailString());
     }
 }

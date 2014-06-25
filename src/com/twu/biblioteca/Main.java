@@ -24,7 +24,7 @@ public class Main {
 
         Map<String, User> users = new HashMap<String, User>();
         users.put("123-4567", new User("Ashley", "ashley.r.campo@gmail.com", "555-404-9999", "password"));
-        users.put("012-3456", new User("Melissa", "mmelissahh@gmail.com", "123-456-7890", "mybirthday"));
+        users.put("012-3456", new User("Melissa", "mmelissahh@gmail.com", "123-456-7890", "my_birthday"));
 
         Authenticator auth = new Authenticator(users);
         Session session = new Session(System.out, reader, auth);

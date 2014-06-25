@@ -5,19 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Map<String, Book> bookList = new HashMap<String,Book>();
-        bookList.put("Harry Potter", new Book("Harry Potter", 1995, false, "JK Rowling"));
-        bookList.put("The Shining", new Book("The Shining", 1970, false, "Stephen King"));
+        List<Book> bookList = new ArrayList<Book>();
+        bookList.add(new Book("Harry Potter", 1995, false, "JK Rowling"));
+        bookList.add(new Book("The Shining", 1970, false, "Stephen King"));
 
-        Map<String,Movie> movieList = new HashMap<String,Movie>();
-        movieList.put("Titanic", new Movie("Titanic", 1998, false, "James Cameron", 7));
-        movieList.put("Harry Potter", new Movie("Harry Potter", 1998, false, "Christopher Columbus", 8));
+        List<Movie> movieList = new ArrayList<Movie>();
+        movieList.add(new Movie("Titanic", 1998, false, "James Cameron", 7));
+        movieList.add(new Movie("Harry Potter", 1998, false, "Christopher Columbus", 8));
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

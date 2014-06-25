@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -19,8 +19,8 @@ public class LibraryTest {
 
     private PrintStream printStream;
     private BufferedReader reader;
-    Map<String,Book> bookList;
-    Map<String,Movie> movieList;
+    List<Book> bookList;
+    List<Movie> movieList;
     private Library library;
     private Session session;
 
@@ -30,19 +30,20 @@ public class LibraryTest {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
         session = mock(Session.class);
-        bookList = new HashMap<String,Book>();
-        movieList = new HashMap<String,Movie>();
+        bookList = new ArrayList<Book>();
+        movieList = new ArrayList<Movie>();
         library = new Library(printStream, reader, bookList, movieList, session);
     }
 
     @Test
     public void shouldCheckoutBookAndPrintMessageOnCheckout() throws IOException {
         Book book = mock(Book.class);
-        bookList.put("", book);
+        bookList.add(book);
 
         User user = mock(User.class);
         when(reader.readLine()).thenReturn("");
         when(session.getUser()).thenReturn(user);
+        when(book.getTitle()).thenReturn("");
 
         library.checkOutItem(bookList);
 
@@ -52,14 +53,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldUncheckoutBookAndPrintMessageOnReturn() throws IOException {
+    public void shouldReturnBookAndPrintMessageOnReturn() throws IOException {
         Book book = mock(Book.class);
-        bookList.put("", book);
+        bookList.add(book);
 
         User user = mock(User.class);
         when(session.getUser()).thenReturn(user);
         when(reader.readLine()).thenReturn("");
         when(book.isCheckedOut()).thenReturn(true);
+        when(book.getTitle()).thenReturn("");
         library.returnItem(bookList);
 
         verify(book).returnItem();
@@ -70,7 +72,7 @@ public class LibraryTest {
     @Test
     public void shouldNotDisplayCheckedOutBooks() {
         Book book = new Book("Harry Potter", 1995, true, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         int longestBook = "Harry Potter".length() + 4;
         int longestAuthor = "J.K. Rowling".length() + 4;
 
@@ -90,7 +92,7 @@ public class LibraryTest {
     @Test
     public void shouldDisplayErrorForCheckedOutBooks() throws IOException {
         Book book = new Book("Harry Potter", 1995, true, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
 
         library.checkOutItem(bookList);
@@ -101,7 +103,7 @@ public class LibraryTest {
     @Test
     public void shouldDisplayCheckedOutBookMessageOnCheckout() throws IOException {
         Book book = new Book("Harry Potter", 1995, false, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
         when(session.getUser()).thenReturn(mock(User.class));
 
@@ -112,7 +114,7 @@ public class LibraryTest {
     @Test
     public void shouldDisplayReturnedBookMessageOnReturn() throws IOException {
         Book book = new Book("Harry Potter", 1995, true, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
         when(session.getUser()).thenReturn(mock(User.class));
 
@@ -130,7 +132,7 @@ public class LibraryTest {
     @Test
     public void shouldDisplayErrorForBooksThatAreAlreadyReturned() throws IOException {
         Book book = new Book("Harry Potter", 1995, false, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
 
         library.returnBook();
@@ -140,7 +142,7 @@ public class LibraryTest {
     @Test
     public void shouldDisplayListOfBooks() {
         Book book = new Book("Harry Potter", 1995, false, "J.K. Rowling");
-        bookList.put("Harry Potter", book);
+        bookList.add(book);
         int longestBook = "Harry Potter".length() + 4;
         int longestAuthor = "J.K. Rowling".length() + 4;
 

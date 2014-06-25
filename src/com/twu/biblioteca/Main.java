@@ -42,9 +42,9 @@ public class Main {
         commands.put("login", new LoginCommand(session));
 
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
-                commands);
+                commands, session);
 
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, System.out, session);
+        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, System.out);
         bibliotechaApp.start();
 
   }

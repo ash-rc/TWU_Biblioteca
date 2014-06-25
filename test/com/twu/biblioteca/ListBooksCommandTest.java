@@ -16,6 +16,7 @@ public class ListBooksCommandTest {
 
     private PrintStream printStream;
     private BufferedReader reader;
+    private Session session;
     private CommandMenu commandMenu;
     private HashMap<String, Command> commands;
 
@@ -23,8 +24,9 @@ public class ListBooksCommandTest {
     public void setUp() {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
+        session = mock(Session.class);
         commands = new HashMap<String, Command>();
-        commandMenu = new CommandMenu(printStream, reader, commands);
+        commandMenu = new CommandMenu(printStream, reader, commands, session);
     }
 
     @Test
@@ -35,7 +37,7 @@ public class ListBooksCommandTest {
         when(reader.readLine()).thenReturn("list");
 
         String userCommand = commandMenu.promptUser();
-        commandMenu.executeCommand(userCommand, true);
+        commandMenu.executeCommand(userCommand);
 
         verify(library).displayBooks();
     }

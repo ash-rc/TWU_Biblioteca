@@ -35,6 +35,7 @@ public class Session {
         }
 
         user = authenticator.getUser(accountNum);
+        out.println("Login successful.");
         return true;
     }
 

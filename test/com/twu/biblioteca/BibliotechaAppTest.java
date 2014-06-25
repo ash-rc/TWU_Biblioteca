@@ -9,29 +9,21 @@ import java.io.PrintStream;
 
 import static org.mockito.Mockito.*;
 
-/**
- * Created by derekgilwa on 6/18/14.
- */
 public class BibliotechaAppTest {
 
     @Test
-    public void testLibraryStartCallsWelcomeAndMenu() throws IOException {
+    public void shouldPrintWelcomeListOptionsAndTakeCommandsOnStart() throws IOException {
         CommandMenu commandMenu = mock(CommandMenu.class);
         PrintStream printStream = mock(PrintStream.class);
-        Session session = mock(Session.class);
-
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(commandMenu, printStream, session);
-        when(session.login()).thenReturn(true);
-        when(commandMenu.promptUser()).thenReturn("list").thenReturn("quit");
+        BibliotechaApp bibliotechaApp = new BibliotechaApp(commandMenu, printStream);
+        when(commandMenu.promptUser()).thenReturn("list books").thenReturn("quit");
 
         bibliotechaApp.start();
 
-        InOrder inOrder = inOrder(commandMenu, session);
-
-        /*inOrder.verify(session).login();
+        InOrder inOrder = inOrder(printStream, commandMenu);
+        inOrder.verify(printStream).println("Welcome to the library!");
         inOrder.verify(commandMenu).listOptions();
-        inOrder.verify(commandMenu, atLeastOnce()).promptUser();
-        inOrder.verify(commandMenu).executeCommand("list");
-        inOrder.verify(commandMenu).executeCommand("quit");*/
+        inOrder.verify(commandMenu, times(2)).promptUser();
+        inOrder.verify(commandMenu, times(1)).executeCommand(anyString());
     }
 }

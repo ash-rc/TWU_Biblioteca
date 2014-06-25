@@ -10,23 +10,24 @@ public class BibliotechaApp {
 
     private CommandMenu commandMenu;
     private PrintStream out;
-    private Session session;
 
-    public BibliotechaApp(CommandMenu commandMenu, PrintStream out, Session session) {
+    public BibliotechaApp(CommandMenu commandMenu, PrintStream out) {
         this.commandMenu = commandMenu;
         this.out = out;
-        this.session = session;
     }
 
     public void start() throws IOException {
         out.println("Welcome to the library!");
-
-        commandMenu.listOptions(session.hasLoggedInUser());
+        commandMenu.listOptions();
 
         String userCommand = "";
         while (!userCommand.equals("quit")) {
             userCommand = commandMenu.promptUser();
-            commandMenu.executeCommand(userCommand, session.hasLoggedInUser());
+            commandMenu.executeCommand(userCommand);
+
+            if (commandMenu.loginCommandCompletedSuccessfully(userCommand)) {
+                commandMenu.listOptions();
+            }
         }
     }
 

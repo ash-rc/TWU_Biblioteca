@@ -12,20 +12,19 @@ public class CommandMenu {
     private HashMap<String, Command> commands;
     private PrintStream printStream;
     private BufferedReader reader;
+    private Session session;
 
-    public CommandMenu(PrintStream printStream, BufferedReader reader, HashMap<String, Command> commands) {
+    public CommandMenu(PrintStream printStream, BufferedReader reader, HashMap<String, Command> commands, Session session) {
         this.printStream = printStream;
         this.reader = reader;
         this.commands = commands;
+        this.session = session;
     }
 
-    public void listOptions(boolean sessionHasLoggedInUser) {
+    public void listOptions() {
         for (String commandName : commands.keySet()) {
-            if (!commandIsAccessible(commandName, sessionHasLoggedInUser))
+            if (!commandIsAccessible(commandName) || loginCommandCalledButUserIsLoggedIn(commandName))
                 continue;
-            else if (sessionHasLoggedInUser && commands.get(commandName) instanceof LoginCommand)
-                continue;
-
             printStream.println(commandName);
         }
     }
@@ -34,8 +33,8 @@ public class CommandMenu {
         return reader.readLine();
     }
 
-    public void executeCommand(String commandName, boolean sessionHasLoggedInUser) {
-        if(commands.containsKey(commandName) && commandIsAccessible(commandName, sessionHasLoggedInUser)){
+    public void executeCommand(String commandName) {
+        if (commands.containsKey(commandName) && commandIsAccessible(commandName)) {
             commands.get(commandName).execute();
         } else {
             printStream.println("Select a valid option");
@@ -43,8 +42,15 @@ public class CommandMenu {
         }
     }
 
-    private boolean commandIsAccessible(String commandName, boolean sessionHasLoggedInUser) {
-        if (!sessionHasLoggedInUser && commands.get(commandName).isPrivate()) return false;
-        return true;
+    private boolean loginCommandCalledButUserIsLoggedIn(String commandName) {
+        return session.hasLoggedInUser() && commands.get(commandName) instanceof LoginCommand;
+    }
+
+    private boolean commandIsAccessible(String commandName) {
+        return session.hasLoggedInUser() || !commands.get(commandName).isPrivate();
+    }
+
+    public boolean loginCommandCompletedSuccessfully(String userCommand) {
+        return commands.get(userCommand) instanceof LoginCommand && session.hasLoggedInUser();
     }
 }

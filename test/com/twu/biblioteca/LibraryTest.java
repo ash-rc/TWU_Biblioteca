@@ -22,15 +22,17 @@ public class LibraryTest {
     Map<String,Book> bookList;
     Map<String,Movie> movieList;
     private Library library;
+    private Session session;
 
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
+        session = mock(Session.class);
         bookList = new HashMap<String,Book>();
         movieList = new HashMap<String,Movie>();
-        library = new Library(printStream, reader, bookList, movieList);
+        library = new Library(printStream, reader, bookList, movieList, session);
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,14 +21,13 @@ public class Main {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        Library library = new Library(System.out, reader, bookList, movieList);
-
         Map<String, User> users = new HashMap<String, User>();
-        users.put("123-4567", new User("password"));
-        users.put("012-3456", new User("mybirthday"));
+        users.put("123-4567", new User("password", new ArrayList<LibraryItem>()));
+        users.put("012-3456", new User("mybirthday", new ArrayList<LibraryItem>()));
 
         Authenticator auth = new Authenticator(users);
         Session session = new Session(System.out, reader, auth);
+        Library library = new Library(System.out, reader, bookList, movieList, session);
 
         HashMap<String,Command> commands = new HashMap<String, Command>();
         commands.put("list books", new ListBooksCommand(library));

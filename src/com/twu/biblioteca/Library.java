@@ -11,12 +11,15 @@ public class Library {
 
     private PrintStream printStream;
     private BufferedReader reader;
+    private Session session;
 
-    public Library(PrintStream printStream, BufferedReader reader, Map<String, ? extends LibraryItem> bookList, Map<String, ? extends LibraryItem> movieList) {
+    public Library(PrintStream printStream, BufferedReader reader, Map<String, ? extends LibraryItem> bookList,
+                   Map<String, ? extends LibraryItem> movieList, Session session) {
         this.bookList = bookList;
         this.movieList = movieList;
         this.printStream = printStream;
         this.reader = reader;
+        this.session = session;
     }
 
     public void display(Map<String, ? extends LibraryItem> itemList) {

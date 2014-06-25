@@ -22,17 +22,14 @@ public class LibraryTest {
     List<Book> bookList;
     List<Movie> movieList;
     private Library library;
-    private Session session;
-
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
-        session = mock(Session.class);
         bookList = new ArrayList<Book>();
         movieList = new ArrayList<Movie>();
-        library = new Library(printStream, reader, bookList, movieList, session);
+        library = new Library(printStream, reader, bookList, movieList);
     }
 
     @Test
@@ -40,15 +37,12 @@ public class LibraryTest {
         Book book = mock(Book.class);
         bookList.add(book);
 
-        User user = mock(User.class);
         when(reader.readLine()).thenReturn("");
-        when(session.getUser()).thenReturn(user);
         when(book.getTitle()).thenReturn("");
 
         library.checkOutItem(bookList);
 
         verify(book).checkOut();
-        verify(user).checkoutItem(book);
         verify(printStream).println("Thank you! Enjoy the item");
     }
 
@@ -57,15 +51,12 @@ public class LibraryTest {
         Book book = mock(Book.class);
         bookList.add(book);
 
-        User user = mock(User.class);
-        when(session.getUser()).thenReturn(user);
         when(reader.readLine()).thenReturn("");
         when(book.isCheckedOut()).thenReturn(true);
         when(book.getTitle()).thenReturn("");
         library.returnItem(bookList);
 
         verify(book).returnItem();
-        verify(user).returnItem(book);
         verify(printStream).println("Thank you for returning the item");
     }
 
@@ -105,7 +96,6 @@ public class LibraryTest {
         Book book = new Book("Harry Potter", 1995, false, "J.K. Rowling");
         bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
-        when(session.getUser()).thenReturn(mock(User.class));
 
         library.checkOutItem(bookList);
         verify(printStream).println("Thank you! Enjoy the item");
@@ -116,7 +106,6 @@ public class LibraryTest {
         Book book = new Book("Harry Potter", 1995, true, "J.K. Rowling");
         bookList.add(book);
         when(reader.readLine()).thenReturn("Harry Potter");
-        when(session.getUser()).thenReturn(mock(User.class));
 
         library.returnItem(bookList);
         verify(printStream).println("Thank you for returning the item");

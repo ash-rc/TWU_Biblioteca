@@ -11,15 +11,13 @@ public class Library {
 
     private PrintStream printStream;
     private BufferedReader reader;
-    private Session session;
 
     public Library(PrintStream printStream, BufferedReader reader, List<? extends LibraryItem> bookList,
-                   List<? extends LibraryItem> movieList, Session session) {
+                   List<? extends LibraryItem> movieList) {
         this.bookList = bookList;
         this.movieList = movieList;
         this.printStream = printStream;
         this.reader = reader;
-        this.session = session;
     }
 
     public void display(List<? extends LibraryItem> itemList) {
@@ -60,7 +58,6 @@ public class Library {
         LibraryItem item = findItemByUserRequest(itemList);
         if (item != null && !item.isCheckedOut()) {
             item.checkOut();
-            session.getUser().checkoutItem(item);
             printStream.println("Thank you! Enjoy the item");
         } else {
             printStream.println("That item is not available.");
@@ -71,7 +68,6 @@ public class Library {
         LibraryItem item = findItemByUserRequest(itemList);
         if (item != null && item.isCheckedOut()) {
             item.returnItem();
-            session.getUser().returnItem(item);
             printStream.println("Thank you for returning the item");
         } else {
             printStream.println("That is not a valid item to return.");

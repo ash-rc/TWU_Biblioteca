@@ -42,4 +42,8 @@ public class Session {
     public boolean hasLoggedInUser() {
         return user != null;
     }
+
+    public User getUser() {
+        return user;
+    }
 }

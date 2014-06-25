@@ -60,17 +60,18 @@ public class Library {
         LibraryItem item = findItem(itemList);
         if (item != null && !item.isCheckedOut()) {
             item.checkOut();
+            session.getUser().checkoutItem(item);
             printStream.println("Thank you! Enjoy the item");
         } else {
             printStream.println("That item is not available.");
         }
-
     }
 
     public void returnItem(Map<String, ? extends LibraryItem> itemList) throws IOException {
         LibraryItem item = findItem(itemList);
         if (item != null && item.isCheckedOut()) {
             item.returnItem();
+            session.getUser().returnItem(item);
             printStream.println("Thank you for returning the item");
         } else {
             printStream.println("That is not a valid item to return.");

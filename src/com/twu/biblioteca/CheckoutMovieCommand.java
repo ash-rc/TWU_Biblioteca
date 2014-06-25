@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import java.io.IOException;
 
-/**
- * Created by melissamarshall on 6/23/14.
- */
 public class CheckoutMovieCommand implements Command {
 
     private Library library;

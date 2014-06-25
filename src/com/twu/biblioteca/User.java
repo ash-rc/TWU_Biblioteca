@@ -20,14 +20,7 @@ public class User {
         checkedOutItems.add(item);
     }
     
-    public void returnItem(String itemName, Class<? extends LibraryItem> itemType) {
-        LibraryItem checkedOutItem = null;
-        for (LibraryItem item : checkedOutItems) {
-            String name = item.getTitle();
-            if (name.equals(itemName) && itemType.isInstance(item))
-                checkedOutItem = item;
-                break;
-        }
-        checkedOutItems.remove(checkedOutItem);
+    public void returnItem(LibraryItem item) {
+        checkedOutItems.remove(item);
     }
 }

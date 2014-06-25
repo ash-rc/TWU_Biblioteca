@@ -11,7 +11,6 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
         List<Book> bookList = new ArrayList<Book>();
         bookList.add(new Book("Harry Potter", 1995, false, "JK Rowling"));
         bookList.add(new Book("The Shining", 1970, false, "Stephen King"));
@@ -46,7 +45,7 @@ public class Main {
         CommandMenu menu = new CommandMenu(System.out, new BufferedReader(new InputStreamReader(System.in)),
                 commands, session);
 
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(menu, System.out);
+        BibliotecaApp bibliotechaApp = new BibliotecaApp(menu, System.out);
         bibliotechaApp.start();
 
   }

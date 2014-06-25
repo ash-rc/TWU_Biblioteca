@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 public abstract class LibraryItem {
-
     protected String title;
     protected int year;
     protected boolean checkedOut;
@@ -22,10 +21,6 @@ public abstract class LibraryItem {
 
     public void returnItem() {
         checkedOut = false;
-    }
-
-    public int getYear() {
-        return year;
     }
 
     public String getTitle() {

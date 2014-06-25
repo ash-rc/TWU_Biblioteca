@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import java.io.IOException;
 
 public class CheckoutMovieCommand implements Command {
-
     private Library library;
 
     public CheckoutMovieCommand(Library library) {

@@ -4,13 +4,13 @@ public class User {
 
     private final String name;
     private final String email;
-    private final String phonenumber;
+    private final String phoneNumber;
     private String password;
 
-    public User(String name, String email, String phonenumber, String password) {
+    public User(String name, String email, String phoneNumber, String password) {
         this.name = name;
         this.email = email;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
@@ -19,6 +19,6 @@ public class User {
     }
 
     public String getDetailString() {
-        return "Name: " + name + "\nEmail: " + email + "\nPhone Number: " + phonenumber + "\n";
+        return "Name: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber;
     }
 }

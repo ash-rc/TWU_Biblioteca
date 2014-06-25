@@ -11,14 +11,6 @@ public class Movie extends LibraryItem {
         this.rating = rating;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
     @Override
     public int getCreatorLength() {
         return director.length();

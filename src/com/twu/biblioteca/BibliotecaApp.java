@@ -6,12 +6,11 @@ import java.io.PrintStream;
 /**
  * Created by derekgilwa on 6/20/14.
  */
-public class BibliotechaApp {
-
+public class BibliotecaApp {
     private CommandMenu commandMenu;
     private PrintStream out;
 
-    public BibliotechaApp(CommandMenu commandMenu, PrintStream out) {
+    public BibliotecaApp(CommandMenu commandMenu, PrintStream out) {
         this.commandMenu = commandMenu;
         this.out = out;
     }

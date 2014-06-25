@@ -15,7 +15,7 @@ public class QuitCommand implements Command {
 
     @Override
     public void execute() {
-        out.println("Quitting Bibliotecha");
+        out.println("Quitting Biblioteca");
     }
 
     @Override

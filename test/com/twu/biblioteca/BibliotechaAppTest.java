@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Test;
 import org.mockito.InOrder;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -15,7 +14,7 @@ public class BibliotechaAppTest {
     public void shouldPrintWelcomeListOptionsAndTakeCommandsOnStart() throws IOException {
         CommandMenu commandMenu = mock(CommandMenu.class);
         PrintStream printStream = mock(PrintStream.class);
-        BibliotechaApp bibliotechaApp = new BibliotechaApp(commandMenu, printStream);
+        BibliotecaApp bibliotechaApp = new BibliotecaApp(commandMenu, printStream);
         when(commandMenu.promptUser()).thenReturn("list books").thenReturn("quit");
 
         bibliotechaApp.start();

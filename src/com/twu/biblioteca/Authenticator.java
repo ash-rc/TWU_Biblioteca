@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import java.util.Map;
 
 public class Authenticator {
-
     private Map<String, User> users;
 
     public Authenticator(Map<String, User> users) {

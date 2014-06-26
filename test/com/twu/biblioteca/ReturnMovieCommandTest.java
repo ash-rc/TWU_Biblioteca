@@ -16,5 +16,4 @@ public class ReturnMovieCommandTest {
         returnMovieCommand.execute();
         verify(library).returnMovie();
     }
-
 }

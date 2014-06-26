@@ -20,7 +20,7 @@ public class BibliotecaApp {
         commandMenu.listOptions();
 
         String userCommand = "";
-        while (!userCommand.equals("quit")) {
+        while (!userCommand.equalsIgnoreCase("quit")) {
             userCommand = commandMenu.promptUser();
             commandMenu.executeCommand(userCommand.toLowerCase());
 

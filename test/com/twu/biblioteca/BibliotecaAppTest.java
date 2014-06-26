@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.mockito.Mockito.*;
 
-public class BibliotechaAppTest {
+public class BibliotecaAppTest {
 
     @Test
     public void shouldPrintWelcomeListOptionsAndTakeCommandsOnStart() throws IOException {

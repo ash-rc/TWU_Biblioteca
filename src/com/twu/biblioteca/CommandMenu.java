@@ -3,18 +3,18 @@ package com.twu.biblioteca;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by derekgilwa on 6/18/14.
  */
 public class CommandMenu {
-    private HashMap<String, Command> commands;
+    private Map<String, Command> commands;
     private PrintStream printStream;
     private BufferedReader reader;
     private Session session;
 
-    public CommandMenu(PrintStream printStream, BufferedReader reader, HashMap<String, Command> commands, Session session) {
+    public CommandMenu(PrintStream printStream, BufferedReader reader, Map<String, Command> commands, Session session) {
         this.printStream = printStream;
         this.reader = reader;
         this.commands = commands;

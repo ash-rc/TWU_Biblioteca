@@ -22,7 +22,7 @@ public class BibliotecaApp {
         String userCommand = "";
         while (!userCommand.equals("quit")) {
             userCommand = commandMenu.promptUser();
-            commandMenu.executeCommand(userCommand);
+            commandMenu.executeCommand(userCommand.toLowerCase());
 
             if (commandMenu.loginCommandCompletedSuccessfully(userCommand)) {
                 commandMenu.listOptions();

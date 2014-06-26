@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 public class Movie extends LibraryItem {
-
     private int rating;
     private String director;
 

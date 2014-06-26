@@ -12,8 +12,8 @@ public class QuitCommandTest {
     @Test
     public void shouldPrintQuitMessageOnExecute() {
         PrintStream printStream = mock(PrintStream.class);
-        Command command = new QuitCommand(printStream);
+        Command command = new QuitCommand(printStream, false);
         command.execute();
-        verify(printStream).println("Quitting Bibliotecha");
+        verify(printStream).println("Quitting Biblioteca");
     }
 }

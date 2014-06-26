@@ -10,7 +10,7 @@ public class ReturnBookCommandTest {
     @Test
     public void shouldReturnBookCommandAlterBookList() throws IOException {
         Library library = mock(Library.class);
-        Command returnBookCommand = new ReturnBookCommand(library);
+        Command returnBookCommand = new ReturnBookCommand(library, true);
         returnBookCommand.execute();
         verify(library).returnBook();
     }

@@ -5,9 +5,11 @@ package com.twu.biblioteca;
  */
 public class ListBooksCommand implements Command {
     private Library library;
+    private boolean isPrivate;
 
-    public ListBooksCommand(Library library) {
+    public ListBooksCommand(Library library, boolean isPrivate) {
         this.library = library;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -17,6 +19,6 @@ public class ListBooksCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return false;
+        return isPrivate;
     }
 }

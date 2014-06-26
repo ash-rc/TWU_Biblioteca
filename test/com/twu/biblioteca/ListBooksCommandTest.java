@@ -12,7 +12,7 @@ public class ListBooksCommandTest {
     @Test
     public void shouldDisplayBookList() throws IOException {
         Library library = mock(Library.class);
-        Command listBooksCommand = new ListBooksCommand(library);
+        Command listBooksCommand = new ListBooksCommand(library, false);
         listBooksCommand.execute();
         verify(library).displayBooks();
     }

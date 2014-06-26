@@ -27,17 +27,17 @@ public class Main {
     public static Map<String, Command> generateCommands(Library library, Session session) {
         Map<String, Command> commandMap = new HashMap<String, Command>();
 
-        commandMap.put("list books", new ListBooksCommand(library));
-        commandMap.put("checkout book", new CheckoutBookCommand(library));
-        commandMap.put("return book", new ReturnBookCommand(library));
+        commandMap.put("list books", new ListBooksCommand(library, false));
+        commandMap.put("checkout book", new CheckoutBookCommand(library, true));
+        commandMap.put("return book", new ReturnBookCommand(library, true));
 
-        commandMap.put("list movies", new ListMoviesCommand(library));
-        commandMap.put("checkout movie", new CheckoutMovieCommand(library));
-        commandMap.put("return movie", new ReturnMovieCommand(library));
+        commandMap.put("list movies", new ListMoviesCommand(library, false));
+        commandMap.put("checkout movie", new CheckoutMovieCommand(library, true));
+        commandMap.put("return movie", new ReturnMovieCommand(library, true));
 
-        commandMap.put("list user details", new ListUserDetailsCommand(session));
-        commandMap.put("quit", new QuitCommand(System.out));
-        commandMap.put("login", new LoginCommand(session));
+        commandMap.put("list user details", new ListUserDetailsCommand(session, true));
+        commandMap.put("quit", new QuitCommand(System.out, false));
+        commandMap.put("login", new LoginCommand(session, false));
 
         return commandMap;
     }

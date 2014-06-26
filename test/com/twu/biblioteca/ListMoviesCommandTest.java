@@ -11,7 +11,7 @@ public class ListMoviesCommandTest {
     @Test
     public void shouldDisplayMovieList() throws IOException {
         Library library = mock(Library.class);
-        Command listMoviesCommand = new ListMoviesCommand(library);
+        Command listMoviesCommand = new ListMoviesCommand(library, false);
         listMoviesCommand.execute();
         verify(library).displayMovies();
     }

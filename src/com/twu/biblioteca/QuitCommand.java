@@ -6,11 +6,12 @@ import java.io.PrintStream;
  * Created by derekgilwa on 6/20/14.
  */
 public class QuitCommand implements Command {
+    private PrintStream out;
+    private boolean isPrivate;
 
-    PrintStream out;
-
-    public QuitCommand(PrintStream out) {
+    public QuitCommand(PrintStream out, boolean isPrivate) {
         this.out = out;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -20,6 +21,6 @@ public class QuitCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return false;
+        return isPrivate;
     }
 }

@@ -4,9 +4,11 @@ import java.io.IOException;
 
 public class CheckoutMovieCommand implements Command {
     private Library library;
+    private boolean isPrivate;
 
-    public CheckoutMovieCommand(Library library) {
+    public CheckoutMovieCommand(Library library, boolean isPrivate) {
         this.library = library;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -20,6 +22,6 @@ public class CheckoutMovieCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return true;
+        return isPrivate;
     }
 }

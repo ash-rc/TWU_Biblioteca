@@ -13,7 +13,7 @@ public class ListUserDetailsCommandTest {
     @Test
     public void shouldCallPrintsDetailsOnExecute() {
         Session session = mock(Session.class);
-        Command listUserDetailsCommand = new ListUserDetailsCommand(session);
+        Command listUserDetailsCommand = new ListUserDetailsCommand(session, true);
 
         listUserDetailsCommand.execute();
         verify(session).printUserDetails();

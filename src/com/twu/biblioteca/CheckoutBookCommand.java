@@ -7,9 +7,11 @@ import java.io.IOException;
  */
 public class CheckoutBookCommand implements Command {
     private Library library;
+    private boolean isPrivate;
 
-    public CheckoutBookCommand(Library library) {
+    public CheckoutBookCommand(Library library, boolean isPrivate) {
         this.library = library;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -23,6 +25,6 @@ public class CheckoutBookCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return true;
+        return isPrivate;
     }
 }

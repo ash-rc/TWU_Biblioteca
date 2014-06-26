@@ -12,7 +12,7 @@ public class LoginCommandTest {
     @Test
     public void shouldAskSessionToLoginOnExecute() throws IOException {
         Session session = mock(Session.class);
-        Command loginCommand = new LoginCommand(session);
+        Command loginCommand = new LoginCommand(session, false);
         loginCommand.execute();
         verify(session).login();
     }

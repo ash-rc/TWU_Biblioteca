@@ -12,7 +12,7 @@ public class ReturnMovieCommandTest {
     @Test
     public void shouldReturnMovieCommandAlterBookList() throws IOException {
         Library library = mock(Library.class);
-        Command returnMovieCommand = new ReturnMovieCommand(library);
+        Command returnMovieCommand = new ReturnMovieCommand(library, true);
         returnMovieCommand.execute();
         verify(library).returnMovie();
     }

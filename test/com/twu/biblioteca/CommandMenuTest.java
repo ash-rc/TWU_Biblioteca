@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
 
 /**
@@ -64,7 +62,7 @@ public class CommandMenuTest {
 
     @Test
     public void shouldNotListLoginMenuOptionWhenUserIsLoggedIn() {
-        Command loginCommand = new LoginCommand(session);
+        Command loginCommand = new LoginCommand(session, false);
         commands.put("login", loginCommand);
 
         when(session.hasLoggedInUser()).thenReturn(true);

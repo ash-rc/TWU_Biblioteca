@@ -12,7 +12,7 @@ public class CheckoutMovieCommandTest {
     @Test
     public void shouldCheckoutBookCommandAlterBookList() throws IOException {
         Library library = mock(Library.class);
-        Command checkoutMovieCommand = new CheckoutMovieCommand(library);
+        Command checkoutMovieCommand = new CheckoutMovieCommand(library, true);
         checkoutMovieCommand.execute();
         verify(library).checkOutMovie();
     }

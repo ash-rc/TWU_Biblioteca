@@ -4,9 +4,11 @@ import java.io.IOException;
 
 public class LoginCommand implements Command {
     private Session session;
+    private boolean isPrivate;
 
-    public LoginCommand(Session session) {
+    public LoginCommand(Session session, boolean isPrivate) {
         this.session = session;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -20,6 +22,6 @@ public class LoginCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return false;
+        return isPrivate;
     }
 }

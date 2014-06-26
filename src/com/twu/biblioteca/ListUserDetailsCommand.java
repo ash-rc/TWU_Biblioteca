@@ -5,9 +5,11 @@ package com.twu.biblioteca;
  */
 public class ListUserDetailsCommand implements Command {
     private Session session;
+    private boolean isPrivate;
 
-    public ListUserDetailsCommand(Session session) {
+    public ListUserDetailsCommand(Session session, boolean isPrivate) {
         this.session = session;
+        this.isPrivate = isPrivate;
     }
 
     @Override
@@ -17,6 +19,6 @@ public class ListUserDetailsCommand implements Command {
 
     @Override
     public boolean isPrivate() {
-        return true;
+        return isPrivate;
     }
 }

@@ -14,7 +14,7 @@ public class UserTests {
 
         User user = new User(name, email, phoneNumber, password);
 
-        assertEquals(user.getDetailString(), "Name: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber + "\n");
+        assertEquals(user.getDetailString(), "Name: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber);
     }
 
 
